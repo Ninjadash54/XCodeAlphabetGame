@@ -11,6 +11,13 @@
 		994CD09D2C2C8AAF004A4633 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD09C2C2C8AAF004A4633 /* ContentView.swift */; };
 		994CD09F2C2C8AB0004A4633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 994CD09E2C2C8AB0004A4633 /* Assets.xcassets */; };
 		994CD0A22C2C8AB0004A4633 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 994CD0A12C2C8AB0004A4633 /* Preview Assets.xcassets */; };
+		994CD0A92C2CAADF004A4633 /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD0A82C2CAADF004A4633 /* ConnectivityManager.swift */; };
+		994CD0AC2C2CAC57004A4633 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994CD0AB2C2CAC57004A4633 /* MultipeerConnectivity.framework */; };
+		994CD0B02C2CC2BA004A4633 /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD0AF2C2CC2BA004A4633 /* View2.swift */; };
+		994CD0B22C2CC61C004A4633 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD0B12C2CC61C004A4633 /* View3.swift */; };
+		994CD0B52C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 994CD0B42C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf */; };
+		99A6E6182C2D0D4A00F7ABF2 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */; };
+		99A6E61C2C2E026C00F7ABF2 /* BlueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +26,14 @@
 		994CD09C2C2C8AAF004A4633 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		994CD09E2C2C8AB0004A4633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		994CD0A12C2C8AB0004A4633 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		994CD0A82C2CAADF004A4633 /* ConnectivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
+		994CD0AB2C2CAC57004A4633 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		994CD0AF2C2CC2BA004A4633 /* View2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
+		994CD0B12C2CC61C004A4633 /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
+		994CD0B42C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeagueSpartan-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		994CD0B62C2CCD96004A4633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994CD0AC2C2CAC57004A4633 /* MultipeerConnectivity.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +53,7 @@
 			children = (
 				994CD0992C2C8AAF004A4633 /* XCodeFGame */,
 				994CD0982C2C8AAF004A4633 /* Products */,
+				994CD0AA2C2CAC57004A4633 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -51,10 +68,17 @@
 		994CD0992C2C8AAF004A4633 /* XCodeFGame */ = {
 			isa = PBXGroup;
 			children = (
+				994CD0B62C2CCD96004A4633 /* Info.plist */,
+				994CD0B32C2CCC59004A4633 /* Font */,
 				994CD09A2C2C8AAF004A4633 /* XCodeFGameApp.swift */,
 				994CD09C2C2C8AAF004A4633 /* ContentView.swift */,
+				994CD0A82C2CAADF004A4633 /* ConnectivityManager.swift */,
 				994CD09E2C2C8AB0004A4633 /* Assets.xcassets */,
 				994CD0A02C2C8AB0004A4633 /* Preview Content */,
+				994CD0AF2C2CC2BA004A4633 /* View2.swift */,
+				994CD0B12C2CC61C004A4633 /* View3.swift */,
+				99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */,
+				99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */,
 			);
 			path = XCodeFGame;
 			sourceTree = "<group>";
@@ -65,6 +89,22 @@
 				994CD0A12C2C8AB0004A4633 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		994CD0AA2C2CAC57004A4633 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				994CD0AB2C2CAC57004A4633 /* MultipeerConnectivity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		994CD0B32C2CCC59004A4633 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				994CD0B42C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				994CD0A22C2C8AB0004A4633 /* Preview Assets.xcassets in Resources */,
+				994CD0B52C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf in Resources */,
 				994CD09F2C2C8AB0004A4633 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +178,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99A6E61C2C2E026C00F7ABF2 /* BlueView.swift in Sources */,
+				994CD0A92C2CAADF004A4633 /* ConnectivityManager.swift in Sources */,
+				994CD0B22C2CC61C004A4633 /* View3.swift in Sources */,
+				99A6E6182C2D0D4A00F7ABF2 /* SwiftUIView.swift in Sources */,
 				994CD09D2C2C8AAF004A4633 /* ContentView.swift in Sources */,
 				994CD09B2C2C8AAF004A4633 /* XCodeFGameApp.swift in Sources */,
+				994CD0B02C2CC2BA004A4633 /* View2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,9 +318,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"XCodeFGame/Preview Content\"";
+				DEVELOPMENT_TEAM = 3654RV8U3W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = XCodeFGame/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -300,9 +348,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"XCodeFGame/Preview Content\"";
+				DEVELOPMENT_TEAM = 3654RV8U3W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = XCodeFGame/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
