@@ -17,7 +17,6 @@
 		994CD0B22C2CC61C004A4633 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994CD0B12C2CC61C004A4633 /* View3.swift */; };
 		994CD0B52C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 994CD0B42C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf */; };
 		99A6E6182C2D0D4A00F7ABF2 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */; };
-		99A6E61C2C2E026C00F7ABF2 /* BlueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +32,6 @@
 		994CD0B42C2CCC9C004A4633 /* LeagueSpartan-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LeagueSpartan-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		994CD0B62C2CCD96004A4633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
-		99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +76,6 @@
 				994CD0AF2C2CC2BA004A4633 /* View2.swift */,
 				994CD0B12C2CC61C004A4633 /* View3.swift */,
 				99A6E6172C2D0D4A00F7ABF2 /* SwiftUIView.swift */,
-				99A6E61B2C2E026C00F7ABF2 /* BlueView.swift */,
 			);
 			path = XCodeFGame;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99A6E61C2C2E026C00F7ABF2 /* BlueView.swift in Sources */,
 				994CD0A92C2CAADF004A4633 /* ConnectivityManager.swift in Sources */,
 				994CD0B22C2CC61C004A4633 /* View3.swift in Sources */,
 				99A6E6182C2D0D4A00F7ABF2 /* SwiftUIView.swift in Sources */,

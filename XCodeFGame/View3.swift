@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 struct View3: View {
@@ -11,8 +9,14 @@ struct View3: View {
     @State private var score = 0
     @State private var showingAlert = false
     @State private var buttonFlash: Int? = nil
-    @State private var rotationAngle: Double = 0.0 // State variable for rotation angle
-    @State private var isButtonPressed: Bool = false // State variable to track button press
+    @State private var rotationAngle: Double = 0.0
+    @State private var isButtonPressed: Bool = false
+    @State private var isRedViewPresented = false
+    @State private var isBlueViewPresented = false
+    @State private var isGreenViewPresented = false
+    @State private var isYellowViewPresented = false
+    @State private var zoomedButtonIndex: Int? = nil
+    @GestureState private var zoomScale: CGFloat = 1.0
 
     let colors: [Color] = [.SQR, .SQB, .SQG, .SQY]
     let maxRounds = 4
@@ -21,29 +25,29 @@ struct View3: View {
         ZStack {
             Color.BG
                 .ignoresSafeArea()
-            
+
             VStack {
                 HStack {
                     Spacer()
                     Text("\(score)")
                         .font(.custom("LeagueSpartan-Regular", size: 15))
-                        .padding(.top, -35) // Adjust the padding to fit next to the camera cutout
+                        .padding(.top, -35)
                         .padding(.trailing, 300)
                         .foregroundColor(.white)
                 }
                 HStack {
                     Spacer()
-                    
+
                     Image(systemName: "arrow.clockwise")
                         .font(.custom("LeagueSpartan-Regular", size: 16))
                         .foregroundColor(.white)
-                        .rotationEffect(.degrees(rotationAngle)) // Apply rotation effect based on rotationAngle state
+                        .rotationEffect(.degrees(rotationAngle))
                         .padding(.all, 10)
                         .background(
                             RoundedRectangle(cornerRadius: 11)
                                 .foregroundColor(.SQD)
-                                .shadow(radius: isButtonPressed ? 6 : 15) // Adjust shadow based on button press state
-                                .frame(width: 100, height: 30) // Adjust width and height as needed
+                                .shadow(radius: isButtonPressed ? 6 : 15)
+                                .frame(width: 100, height: 30)
                         )
                         .padding(.top, -15)
                         .padding(.trailing, 45)
@@ -55,10 +59,10 @@ struct View3: View {
                                 .onEnded { _ in
                                     self.isButtonPressed = false
                                     withAnimation(.easeInOut(duration: 0.3)) {
-                                        self.rotationAngle += 360.0 // Rotate by 360 degrees (one full rotation)
+                                        self.rotationAngle += 360.0
                                     }
                                     self.restartGame()
-                                    self.vibrate() // Trigger haptic feedback
+                                    self.triggerHapticFeedback() // Call haptic feedback method
                                 }
                         )
                 }
@@ -68,16 +72,16 @@ struct View3: View {
             VStack {
                 Text("SIMON SAYS")
                     .font(.custom("LeagueSpartan-Regular", size: 50))
-                    .foregroundColor(.white) // White text color
-                
+                    .foregroundColor(.white)
+
                 Text("Round \(currentRound)")
                     .font(.custom("LeagueSpartan-Regular", size: 35))
-                    .foregroundColor(.white) // White text color
-                
+                    .foregroundColor(.white)
+
                 Text(message)
                     .font(.custom("LeagueSpartan-Regular", size: 35))
-                    .foregroundColor(.white) // White text color
-                
+                    .foregroundColor(.white)
+
                 HStack {
                     VStack {
                         gameButton(index: 0)
@@ -89,10 +93,10 @@ struct View3: View {
                     }
                 }
                 .disabled(!self.isPlayerTurn)
-                
+
                 Text("Score: \(score)")
                     .font(.custom("LeagueSpartan-Regular", size: 35))
-                    .foregroundColor(.white) // White text color
+                    .foregroundColor(.white)
                     .padding()
             }
             .alert(isPresented: $showingAlert) {
@@ -105,22 +109,64 @@ struct View3: View {
                 )
             }
             .onAppear(perform: startGame)
+
+            if isRedViewPresented {
+                RedView(isPresented: $isRedViewPresented)
+                    .transition(.scale)
+            } else if isBlueViewPresented {
+                BlueView(isPresented: $isBlueViewPresented)
+                    .transition(.scale)
+            } else if isGreenViewPresented {
+                GreenView(isPresented: $isGreenViewPresented)
+                    .transition(.scale)
+            } else if isYellowViewPresented {
+                YellowView(isPresented: $isYellowViewPresented)
+                    .transition(.scale)
+            }
         }
     }
 
     func gameButton(index: Int) -> some View {
-        Button(action: {
+        let button = Button(action: {
             self.playerTapped(index)
-            self.vibrate() // Trigger haptic feedback
+            self.triggerHapticFeedback()
         }) {
             Image(systemName: "square.fill")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150) // Adjust size as needed
+                .frame(width: 150, height: 150)
                 .foregroundColor(self.colors[index])
                 .opacity(self.buttonFlash == index ? 0.5 : 1.0)
                 .padding()
+                .scaleEffect(zoomedButtonIndex == index ? zoomScale : 1.0)
         }
+        
+        return button
+            .gesture(
+                MagnificationGesture()
+                    .updating($zoomScale) { value, scale, _ in
+                        scale = value.magnitude
+                        if value > 1.0 {
+                            zoomedButtonIndex = index
+                        }
+                    }
+                    .onEnded { scale in
+                        if scale > 1.5 {
+                            switch index {
+                            case 0: isRedViewPresented = true
+                            case 1: isBlueViewPresented = true
+                            case 2: isGreenViewPresented = true
+                            case 3: isYellowViewPresented = true
+                            default: break
+                            }
+                            zoomedButtonIndex = nil
+                        } else {
+                            zoomedButtonIndex = nil
+                        }
+                    }
+            )
+            .animation(.interactiveSpring(), value: zoomScale)
+            .animation(.interactiveSpring(), value: zoomedButtonIndex)
     }
 
     func startGame() {
@@ -135,7 +181,7 @@ struct View3: View {
     func generateSequence() {
         gameSequence = []
         for _ in 0..<3 + currentRound - 1 {
-            gameSequence.append(Int.random(in: 0..<4))
+            gameSequence.append(Int.random(in: 0..<colors.count))
         }
         playSequence()
     }
@@ -195,6 +241,11 @@ struct View3: View {
         currentRound = 1
         score = 0
         message = "Watch the sequence"
+        isRedViewPresented = false
+        isBlueViewPresented = false
+        isGreenViewPresented = false
+        isYellowViewPresented = false
+        zoomedButtonIndex = nil
     }
 
     func restartGame() {
@@ -202,9 +253,121 @@ struct View3: View {
         startGame()
     }
 
-    func vibrate() {
+    func triggerHapticFeedback() {
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
+    }
+}
+
+struct RedView: View {
+    @Binding var isPresented: Bool
+    @GestureState private var zoomScale: CGFloat = 1.0
+
+    var body: some View {
+        Color.SQR
+            .ignoresSafeArea()
+            .overlay(
+                Text("Red View")
+                    .foregroundColor(.white)
+                    .font(.title)
+            )
+            .scaleEffect(zoomScale)
+            .gesture(
+                MagnificationGesture()
+                    .updating($zoomScale) { value, scale, _ in
+                        scale = value.magnitude
+                    }
+                    .onEnded { scale in
+                        if scale < 0.5 {
+                            isPresented = false
+                        }
+                    }
+            )
+            .animation(.interactiveSpring(), value: zoomScale)
+    }
+}
+
+struct BlueView: View {
+    @Binding var isPresented: Bool
+    @GestureState private var zoomScale: CGFloat = 1.0
+
+    var body: some View {
+        Color.SQB
+            .ignoresSafeArea()
+            .overlay(
+                Text("Blue View")
+                    .foregroundColor(.white)
+                    .font(.title)
+            )
+            .scaleEffect(zoomScale)
+            .gesture(
+                MagnificationGesture()
+                    .updating($zoomScale) { value, scale, _ in
+                        scale = value.magnitude
+                    }
+                    .onEnded { scale in
+                        if scale < 0.5 {
+                            isPresented = false
+                        }
+                    }
+            )
+            .animation(.interactiveSpring(), value: zoomScale)
+    }
+}
+
+struct GreenView: View {
+    @Binding var isPresented: Bool
+    @GestureState private var zoomScale: CGFloat = 1.0
+
+    var body: some View {
+        Color.SQG
+            .ignoresSafeArea()
+            .overlay(
+                Text("Green View")
+                    .foregroundColor(.white)
+                    .font(.title)
+            )
+            .scaleEffect(zoomScale)
+            .gesture(
+                MagnificationGesture()
+                    .updating($zoomScale) { value, scale, _ in
+                        scale = value.magnitude
+                    }
+                    .onEnded { scale in
+                        if scale < 0.5 {
+                            isPresented = false
+                        }
+                    }
+            )
+            .animation(.interactiveSpring(), value: zoomScale)
+    }
+}
+
+struct YellowView: View {
+    @Binding var isPresented: Bool
+    @GestureState private var zoomScale: CGFloat = 1.0
+
+    var body: some View {
+        Color.SQY
+            .ignoresSafeArea()
+            .overlay(
+                Text("Yellow View")
+                    .foregroundColor(.white)
+                    .font(.title)
+            )
+            .scaleEffect(zoomScale)
+            .gesture(
+                MagnificationGesture()
+                    .updating($zoomScale) { value, scale, _ in
+                        scale = value.magnitude
+                    }
+                    .onEnded { scale in
+                        if scale < 0.5 {
+                            isPresented = false
+                        }
+                    }
+            )
+            .animation(.interactiveSpring(), value: zoomScale)
     }
 }
 
